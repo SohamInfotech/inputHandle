@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+    <body>
+        <h1>soham</h1>
+        <form action="/page">
+            name:<input type="text" name="name" value="<%=(editedata!=null)?editedata.name:''%>">
+            Male:<input <%= (editedata)?(editedata.gender == 'male' ?'checked':''):'checked'%> type="radio" name="gender" value="male">
+            female:<input <%= (editedata)?(editedata.gender == 'female'?'checked':''):''%>  type="radio" name="gender" value="female">
+            cricket<input type="checkbox" name="chek"  value="cricket" <%= (editedata)?(editedata.chek.includes("cricket"))?"checked":"":''%>>
+            football<input type="checkbox" name="chek" value="football" <%= (editedata)?(editedata.chek.includes("football"))?"checked":"":''%>>
+            kabadi<input type="checkbox" name="chek" value="kabadi" <%= (editedata)?(editedata.chek.includes("kabadi"))?"checked":"":''%>>
+            <input type="file" name="img" >
+            <input type="submit" name="button">
+
+        
+        </form>
+        <table border="2px">
+            <tr>
+                <td>name</td>
+                <td>gender</td>
+                <td>hobby</td>
+                <td>image</td>
+                <td>Delet</td>
+                <td>Edit</td>
+                
+            </tr>
+            <% data.map((item,index)=>{ %>
+                <tr>
+                    <td>
+                        <%=item.name %>
+                    </td>
+                    <td>
+                        <%=item.gender%>
+                    </td>
+                    <td>
+                        <%=item.chek%>
+                    </td>    
+                    <td>
+                        <%=item.img%>
+                    </td>    
+        
+                    <td>
+                        <a href="/deletedata?delet=<%=index%>"><button>delet</button>  </a>
+                    </td>
+                    <td>
+                        <a href="/editdata?edit=<%=index%>"><button>Edit</button>  </a>
+                    </td>
+                    
+                </tr>
+                <% }) %>
+        </table>
+    </body>
+
+</html>
